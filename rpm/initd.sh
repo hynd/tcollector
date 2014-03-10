@@ -54,6 +54,7 @@ sanity_check() {
 start() {
   echo -n $"Starting $prog: "
   sanity_check || return $?
+  /usr/bin/find `dirname ${TCOLLECTOR}` -name '*.pyc' -delete
   daemon --pidfile=$PIDFILE $TCOLLECTOR $OPTIONS
   RETVAL=$?
   echo
